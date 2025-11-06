@@ -1,0 +1,104 @@
+.intro-container {
+  height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at center, #0d0d0d 40%, #1a1a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.college-logo {
+  width: 380px;              /* increased size */
+  height: auto;
+  margin-bottom: 25px;
+  animation: floatLogo 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px #00e6ff80);  /* subtle glow */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.college-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px #00ffffaa);
+}
+
+
+/* Club + Symposium logos side by side */
+.logo-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.circle-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #ffffff40;
+  box-shadow: 0 0 15px #00e6ff80;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circle-logo:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00e6ffcc;
+}
+
+/* Glowing animated text */
+.sympo-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  color: #00e6ff;
+  text-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff, 0 0 40px #00e6ff;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Button styling */
+.enter-btn {
+  font-size: 1.1rem !important;
+  background-color: #00e6ff !important;
+  color: #0d0d0d !important;
+  border-radius: 25px !important;
+  padding: 10px 30px !important;
+  box-shadow: 0 0 20px #00e6ff80 !important;
+  transition: all 0.3s ease !important;
+}
+
+.enter-btn:hover {
+  background-color: #00ffff !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #00ffffaa !important;
+}
+
+/* Animations */
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff, 0 0 40px #00e6ff;
+  }
+  to {
+    text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+  }
+}
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
