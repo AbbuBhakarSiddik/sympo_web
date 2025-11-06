@@ -1,6 +1,5 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
-
 
 import express from "express";
 import cors from "cors";
@@ -8,8 +7,6 @@ import mongoose from "mongoose";
 import path from "path";
 import { fileURLToPath } from "url";
 import adminRoutes from "./routes/adminRoutes.js";
-
-
 
 const app = express();
 
@@ -27,6 +24,7 @@ app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 // Routes
 app.use("/api/admin", adminRoutes);
 
+// MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected Successfully"))

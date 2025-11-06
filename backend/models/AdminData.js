@@ -11,19 +11,32 @@ const AdminSchema = new mongoose.Schema({
   registration: {
     googleFormLink: String,
   },
-  socialLinks: {
-    instagram: String,
-    youtube: String,
-    linkedin: String,
-    twitter: String,
+  socialLinks: 
+  {
+    platform: String, // e.g., "Instagram"
+    username: String, // e.g., "@club_official"
+    url: String,      // e.g., "https://instagram.com/club_official"
   },
+
   clubInfo: {
     name: String,
     logoUrl: String,
   },
+
+  // ✅ Updated contact section
   contact: {
-    email: String,
-    phone: String,
+    main: {
+      name: String,
+      title: String,
+      number: String,
+    },
+    coordinators: [
+      {
+        name: String,
+        title: String,
+        number: String,
+      },
+    ],
   },
 });
 

@@ -16,7 +16,7 @@ router.get("/", getAdminData);
 router.put("/announcements", updateAnnouncements);
 router.put("/social-links", updateSocialLinks);
 router.put("/club-info", updateClubInfo);
-router.put("/contact", updateContact);
+router.put("/contact", updateContact); // ✅ connected properly
 router.put("/rulebooks", updateRulebooks);
 router.put("/registration", updateRegistration);
 router.post("/upload", uploadFile);
