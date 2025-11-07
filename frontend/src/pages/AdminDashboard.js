@@ -14,6 +14,8 @@ import {
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import axios from "axios";
 
+const API_BASE_URL = "https://sympo-backend-tbaz.onrender.com/api/admin";
+
 const AdminDashboard = () => {
   const [tab, setTab] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -33,7 +35,7 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/admin");
+      const res = await axios.get(`${API_BASE_URL}`);
       const data = res.data || {};
       setAnnouncements(data.announcements || []);
       setRulebooks(data.rulebooks || {});
@@ -52,9 +54,7 @@ const AdminDashboard = () => {
   const saveAnnouncements = async () => {
     setLoading(true);
     try {
-      await axios.put("http://localhost:5000/api/admin/announcements", {
-        announcements,
-      });
+      await axios.put(`${API_BASE_URL}/announcements`, { announcements });
       alert("✅ Announcements updated!");
     } catch {
       alert("Failed to save announcements.");
@@ -66,9 +66,7 @@ const AdminDashboard = () => {
   const saveRulebooks = async () => {
     setLoading(true);
     try {
-      await axios.put("http://localhost:5000/api/admin/rulebooks", {
-        rulebooks,
-      });
+      await axios.put(`${API_BASE_URL}/rulebooks`, { rulebooks });
       alert("✅ Rulebooks updated!");
     } catch {
       alert("Failed to save rulebooks.");
@@ -80,7 +78,7 @@ const AdminDashboard = () => {
   const saveRegistration = async () => {
     setLoading(true);
     try {
-      await axios.put("http://localhost:5000/api/admin/registration", {
+      await axios.put(`${API_BASE_URL}/registration`, {
         registration: { googleFormLink: registrationLink },
       });
       alert("✅ Registration link updated!");
@@ -94,9 +92,7 @@ const AdminDashboard = () => {
   const saveSocialLinks = async () => {
     setLoading(true);
     try {
-      await axios.put("http://localhost:5000/api/admin/social-links", {
-        socialLinks,
-      });
+      await axios.put(`${API_BASE_URL}/social-links`, { socialLinks });
       alert("✅ Social media links updated!");
     } catch {
       alert("Failed to save social media links.");
@@ -108,7 +104,7 @@ const AdminDashboard = () => {
   const saveContact = async () => {
     setLoading(true);
     try {
-      await axios.put("http://localhost:5000/api/admin/contact", { contact });
+      await axios.put(`${API_BASE_URL}/contact`, { contact });
       alert("✅ Contact info updated!");
     } catch {
       alert("Failed to save contact info.");
@@ -124,7 +120,7 @@ const AdminDashboard = () => {
       const newList = contact.coordinators.filter((_, i) => i !== index);
       const updatedContact = { ...contact, coordinators: newList };
       setContact(updatedContact);
-      await axios.put("http://localhost:5000/api/admin/contact", { contact: updatedContact });
+      await axios.put(`${API_BASE_URL}/contact`, { contact: updatedContact });
       alert("❌ Coordinator deleted successfully!");
     } catch {
       alert("Failed to delete coordinator.");
@@ -137,18 +133,11 @@ const AdminDashboard = () => {
     try {
       const updatedContact = { ...contact, main: { name: "", title: "", number: "" } };
       setContact(updatedContact);
-      await axios.put("http://localhost:5000/api/admin/contact", { contact: updatedContact });
+      await axios.put(`${API_BASE_URL}/contact`, { contact: updatedContact });
       alert("❌ Main contact deleted successfully!");
     } catch {
       alert("Failed to delete main contact.");
     }
-  };
-
-  // 🗑️ Delete a social media item
-  const deleteSocialMedia = (index) => {
-    if (!window.confirm("Delete this social media entry?")) return;
-    const updated = socialLinks.filter((_, i) => i !== index);
-    setSocialLinks(updated);
   };
 
   return (
@@ -226,79 +215,78 @@ const AdminDashboard = () => {
         </Stack>
       )}
 
-     {/* Social Links */}
-{tab === 3 && (
-  <Stack spacing={3} sx={{ mt: 3 }}>
-    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-      Social Media Links
-    </Typography>
+      {/* Social Links */}
+      {tab === 3 && (
+        <Stack spacing={3} sx={{ mt: 3 }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Social Media Links
+          </Typography>
 
-    {socialLinks.map((link, index) => (
-      <Stack key={index} direction="row" spacing={2} alignItems="center">
-        <TextField
-          label="Platform"
-          fullWidth
-          value={link.platform}
-          onChange={(e) => {
-            const updated = [...socialLinks];
-            updated[index].platform = e.target.value;
-            setSocialLinks(updated);
-          }}
-        />
-        <TextField
-          label="Username"
-          fullWidth
-          value={link.username}
-          onChange={(e) => {
-            const updated = [...socialLinks];
-            updated[index].username = e.target.value;
-            setSocialLinks(updated);
-          }}
-        />
-        <TextField
-          label="Profile URL"
-          fullWidth
-          value={link.url}
-          onChange={(e) => {
-            const updated = [...socialLinks];
-            updated[index].url = e.target.value;
-            setSocialLinks(updated);
-          }}
-        />
-        <IconButton
-          color="error"
-          onClick={() => {
-            const updated = socialLinks.filter((_, i) => i !== index);
-            setSocialLinks(updated);
-          }}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </Stack>
-    ))}
+          {socialLinks.map((link, index) => (
+            <Stack key={index} direction="row" spacing={2} alignItems="center">
+              <TextField
+                label="Platform"
+                fullWidth
+                value={link.platform}
+                onChange={(e) => {
+                  const updated = [...socialLinks];
+                  updated[index].platform = e.target.value;
+                  setSocialLinks(updated);
+                }}
+              />
+              <TextField
+                label="Username"
+                fullWidth
+                value={link.username}
+                onChange={(e) => {
+                  const updated = [...socialLinks];
+                  updated[index].username = e.target.value;
+                  setSocialLinks(updated);
+                }}
+              />
+              <TextField
+                label="Profile URL"
+                fullWidth
+                value={link.url}
+                onChange={(e) => {
+                  const updated = [...socialLinks];
+                  updated[index].url = e.target.value;
+                  setSocialLinks(updated);
+                }}
+              />
+              <IconButton
+                color="error"
+                onClick={() => {
+                  const updated = socialLinks.filter((_, i) => i !== index);
+                  setSocialLinks(updated);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Stack>
+          ))}
 
-    <Button
-      variant="outlined"
-      onClick={() =>
-        setSocialLinks([...socialLinks, { platform: "", username: "", url: "" }])
-      }
-    >
-      + Add Social Media
-    </Button>
+          <Button
+            variant="outlined"
+            onClick={() =>
+              setSocialLinks([...socialLinks, { platform: "", username: "", url: "" }])
+            }
+          >
+            + Add Social Media
+          </Button>
 
-    <Button
-      variant="contained"
-      color="success"
-      onClick={saveSocialLinks}
-      sx={{ width: "200px" }}
-    >
-      Save Social Links
-    </Button>
-  </Stack>
-)}
+          <Button
+            variant="contained"
+            color="success"
+            onClick={saveSocialLinks}
+            sx={{ width: "200px" }}
+          >
+            Save Social Links
+          </Button>
+        </Stack>
+      )}
 
-
-      {/* ✅ Contact Info */}
+      {/* Contact Info */}
       {tab === 4 && (
         <Stack spacing={3} sx={{ mt: 3 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
@@ -387,7 +375,10 @@ const AdminDashboard = () => {
               onClick={() =>
                 setContact({
                   ...contact,
-                  coordinators: [...contact.coordinators, { name: "", title: "", number: "" }],
+                  coordinators: [
+                    ...contact.coordinators,
+                    { name: "", title: "", number: "" },
+                  ],
                 })
               }
             >

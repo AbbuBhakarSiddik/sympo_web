@@ -34,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/admin")
+      .get("https://sympo-backend-tbaz.onrender.com/api/admin")
       .then((res) => setAdminData(res.data))
       .catch((err) => console.error("Error fetching admin data:", err));
   }, []);

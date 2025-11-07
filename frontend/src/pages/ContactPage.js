@@ -15,14 +15,17 @@ const ContactPage = () => {
   useEffect(() => {
     const fetchContact = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/admin");
+        // 🔗 Updated backend URL
+        const res = await axios.get(
+          "https://sympo-backend.onrender.com/api/admin"
+        );
         const data = res.data?.contact || {};
         setContact({
           main: data.main || { name: "", title: "", number: "" },
           coordinators: data.coordinators || [],
         });
       } catch (err) {
-        console.error("Error fetching contact data:", err);
+        console.error("❌ Error fetching contact data:", err);
       }
     };
     fetchContact();
@@ -76,7 +79,13 @@ const ContactPage = () => {
         <Typography variant="subtitle1" color="text.secondary">
           {contact.main.title || "Title / Role"}
         </Typography>
-        <Stack direction="row" justifyContent="center" alignItems="center" spacing={1} mt={1}>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={1}
+          mt={1}
+        >
           <PhoneIcon fontSize="small" color="primary" />
           <Typography variant="body1">
             {contact.main.number || "N/A"}
@@ -109,7 +118,10 @@ const ContactPage = () => {
                     background: "white",
                     textAlign: "center",
                     py: 3,
-                    "&:hover": { transform: "scale(1.03)", transition: "0.3s" },
+                    "&:hover": {
+                      transform: "scale(1.03)",
+                      transition: "0.3s",
+                    },
                   }}
                 >
                   <CardContent>
@@ -148,7 +160,10 @@ const ContactPage = () => {
             </Grid>
           ))
         ) : (
-          <Typography align="center" sx={{ width: "100%", color: "text.secondary" }}>
+          <Typography
+            align="center"
+            sx={{ width: "100%", color: "text.secondary" }}
+          >
             No coordinator contacts available yet.
           </Typography>
         )}
