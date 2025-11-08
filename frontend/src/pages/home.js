@@ -17,7 +17,6 @@ import { motion } from "framer-motion";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DownloadIcon from "@mui/icons-material/Download";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
