@@ -416,7 +416,7 @@ const Home = () => {
           variant="body2"
           sx={{ color: "#666", mt: 4, fontSize: "0.8rem" }}
         >
-          © 2025 Innovation Ignite Symposium | Developed by Club Innovators
+          © 2025 Innovation Ignite Symposium | Developed by Creative Codex Club SIET
         </Typography>
       </Box>
     </Box>
