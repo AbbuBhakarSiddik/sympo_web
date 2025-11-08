@@ -191,6 +191,16 @@ const Home = () => {
         >
           A National Level Technical Symposium
         </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#b0bec5",
+            mt: 1,
+            fontStyle: "italic",
+          }}
+        >
+          ⚠️ Please wait 30–45 seconds for the website to fully load.
+        </Typography>
       </Box>
 
       {/* 🔹 Announcements */}
@@ -402,18 +412,7 @@ const Home = () => {
         <Typography variant="body1" sx={{ color: "#aaa", mb: 2 }}>
           Got questions? Reach out to our symposium team for details.
         </Typography>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "#1e88e5",
-            "&:hover": { backgroundColor: "#1565c0" },
-          }}
-          startIcon={<ContactMailIcon />}
-          onClick={() => navigate("/contact")}
-        >
-          Go to Contact Page
-        </Button>
-
+        
         <Typography
           variant="body2"
           sx={{ color: "#666", mt: 4, fontSize: "0.8rem" }}
